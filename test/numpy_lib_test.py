@@ -1,8 +1,13 @@
-import matplotlib.pyplot as plt
+import unittest
+import os
 import numpy as np
+import matplotlib.pyplot as plt
+from basic.numpy_lib import NumpyLib
 
-class NumpyLib(object):
 
+class NumpyLibTest(object):
+
+    mock = NumpyLib()
 
     def show_numpy(self):
         t = np.arange(0, 5, 0.2)
@@ -14,14 +19,6 @@ class NumpyLib(object):
         dice = np.random.choice(6, 1000000, p=[0.1, 0.2, 0.3, 0.2, 0.1, 0.1])
         plt.hist(dice, bins=6)
         plt.show()
-
-
-    '''
-    np.random.randit(low=10, high=100, size=200)
-    low ~ high 추출되는 숫자의 범위
-    size 추출되는 데이터의 숫자
-    '''
-
 
     def numpy_not_need_for_loop(self):
         x = np.random.randint(low=10, high=100, size=200) # low, high-None, size=None, dtype=None
@@ -67,21 +64,15 @@ class NumpyLib(object):
         print(f'[1.  1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2. ] : {np.linspace(1, 2, 11)}')
         a = np.linspace(1, 2, 11)
         print(f'{np.sqrt(a)}')
-        """
-        [1.         1.04880885 1.09544512 1.14017543 1.18321596 1.22474487
-            1.26491106 1.30384048 1.34164079 1.37840488 1.41421356]
-        """
-
 
     def np_mask(self):
         a = np.arange(-5, 5)
-        print(f'mask [-5 -4 -3 -2 -1] : {a[a<0]}')
+        print(f'mask [-5 -4 -3 -2 -1] : {a[a < 0]}')
         mask1 = abs(a) > 3
         print(f'mask [-5 -4  4] : {a[mask1]}')
         mask2 = abs(a) % 2 == 0
-        print(f'mask1 + mask2 {a[mask1 + mask2]}') # Java에서 // 연산
-        print(f'mask1 * mask2 {a[mask1 * mask2]}') # Java에서 && 연산
-
+        print(f'mask1 + mask2 {a[mask1 + mask2]}')  # Java에서 // 연산
+        print(f'mask1 * mask2 {a[mask1 * mask2]}')  # Java에서 && 연산
 
     def np_bubble(self):
         x = np.random.randint(-100, 100, 1000)
@@ -95,17 +86,6 @@ class NumpyLib(object):
         plt.colorbar()
         plt.show()
 
-'''
+
 if __name__ == '__main__':
-    # show_numpy()
-    # numpy_choice()
-    # numpy_not_need_for_loop()
-    # indexing_slicing()
-    # np_zeros()
-    np_ones(self)
-    # np_eye()
-    # np_arange()
-    # np_linspace()
-    # np_mask()
-    # np_bubble()
-'''
+    unittest.main()
