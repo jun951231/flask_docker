@@ -1,7 +1,6 @@
 import unittest
 import os
 import numpy as np
-import matplotlib.pyplot as plt
 from basic.numpy_lib import NumpyLib
 
 
@@ -9,24 +8,24 @@ class NumpyLibTest(object):
 
     mock = NumpyLib()
 
-    def show_numpy(self):
+    '''def show_numpy(self):
         t = np.arange(0, 5, 0.2)
         plt.plot(t, t, 'r--', t,  t**2, 'bs', t, t**3, 'g^')
-        plt.show()
+        plt.show()'''
 
 
-    def numpy_choice(self):
+    '''def numpy_choice(self):
         dice = np.random.choice(6, 1000000, p=[0.1, 0.2, 0.3, 0.2, 0.1, 0.1])
         plt.hist(dice, bins=6)
-        plt.show()
+        plt.show()'''
 
-    def numpy_not_need_for_loop(self):
+    '''def numpy_not_need_for_loop(self):
         x = np.random.randint(low=10, high=100, size=200) # low, high-None, size=None, dtype=None
         y = np.random.randint(low=10, high=100, size=200)
         size = np.random.randint(100) * 100
         plt.scatter(x, y, s=size, c=x, cmap='jet', alpha=0.7)
         plt.colorbar()
-        plt.show()
+        plt.show()'''
 
 
     def indexing_slicing(self):
@@ -74,7 +73,7 @@ class NumpyLibTest(object):
         print(f'mask1 + mask2 {a[mask1 + mask2]}')  # Java에서 // 연산
         print(f'mask1 * mask2 {a[mask1 * mask2]}')  # Java에서 && 연산
 
-    def np_bubble(self):
+    '''def np_bubble(self):
         x = np.random.randint(-100, 100, 1000)
         y = np.random.randint(-100, 100, 1000)
         size = np.random.randint(100) * 100
@@ -84,7 +83,7 @@ class NumpyLibTest(object):
         y = y[mask1 + mask2]
         plt.scatter(x, y, s=size, c=x, cmap='jet', alpha=0.7)
         plt.colorbar()
-        plt.show()
+        plt.show()'''
 
 
 if __name__ == '__main__':
