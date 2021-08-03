@@ -22,7 +22,7 @@ class Plot(object):
         series = this['Survived'].value_counts()
         print(type(series))
         print(series)
-        this['Survived'].value_counts().plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)
+        series.plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)
         ax[0].set_title('0.사망자 vs 1.생존자')
         ax[0].set_ylabel('')
         ax[1].set_title('0.사망자 vs 1.생존자')
