@@ -1,6 +1,6 @@
 import unittest
 
-from titanic.view.titanic_view import TitanicView
+from lecture.titanic import TitanicView
 
 
 class TitanicViewTest(unittest.TestCase):
