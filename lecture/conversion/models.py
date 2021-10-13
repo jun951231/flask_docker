@@ -59,40 +59,81 @@ class Conversion(object):
         ic(type(lst))
         ic(lst)
 
+        print("Q12. 키는 a, b, c 이고 값은 [1, 2, 3], [4, 5, 6], [7, 8, 9] 인 딕셔너리 출력")
+        dt = self.abc_dict()
+        ic(type(dt))
+        ic(dt)
+
+        print("Q13. 12번 딕셔너리에서 키값을 인덱스로 갖는 데이터프레임 출력")
+        df = self.orient_index(dt)
+        ic(type(df))
+        ic(df)
+
+        print('Q14. 12번 딕셔너리에서 키 값을 컬럼으로 갖는 데이터프레임 출력')
+        df = self.orient_column(dt)
+        ic(type(df))
+        ic(df)
+
+    # Q1
     def create_tuple(self) -> ():
         return (1, 2, 3, 4, 5, 6, 7, 8, 9)
 
+    # Q2
     def tuple_to_list(self, tpl) -> []:
         return list(tpl)
 
+    # Q3
     def int_to_float(self, lst) -> []:
         # return [float(i) for i in lst]
         return list(map(float, lst))
 
+    # Q4
     def float_to_int(self, lst) -> []:
         return [int(i) for i in lst]
 
+    # Q5
     def list_to_dictionary(self, lst) -> {}:
         return {str(i): i for i in lst}
 
+    # Q6
     def hello_to_tuple(self, param:str) -> ():
         return tuple(param)
 
+    # Q7
     def hello_to_list(self, tpl) -> []:
         return list(tpl)
 
+    # Q8
     def dictionary_to_dataframe(self, dt) -> object:
         return pd.DataFrame().from_dict(dt, orient='index')
 
+    # Q9
+    def my_pow(self, x):
+        return pow(x, 2)
     def tuple_square(self, tpl) -> []:
         # return [i**2 for i in tpl]
         return list(map(lambda x: pow(x, 2), tpl))
 
+    # Q10
     def gugudan(self, tpl) -> [[]]:
-        return list(map(lambda x: list(map(lambda y: f'{x} * {y} = {x*y}', range(2, 10))), tpl))
+        return list(map(lambda x: list(map(lambda i: f'{x} x{i}={x * i}', range(1, 10))), tpl))
 
+    # Q11
     def three_multi_change_str(self, tpl) -> []:
         return list(map(lambda x: str(x) if x % 3 == 0 else x, tpl))
+
+    # Q12
+    def abc_dict(self):
+        return {'a': [1, 2, 3], 'b': [4, 5, 6], 'c': [7, 8, 9]}
+
+    # Q13
+    def orient_index(self, dt):
+        return pd.DataFrame()\
+            .from_dict(dt, orient='index')
+
+    def orient_column(self, dt):
+        return pd.DataFrame().from_dict(dt)
+
 
 if __name__ == '__main__':
     Conversion()

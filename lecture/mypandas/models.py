@@ -1,6 +1,20 @@
+import numpy as np
+import string
+import pandas as pd
+from icecream import ic
+import random
+
+# 외부함수 만들지 말고 전부 람다로 만들기.
+
 class MyPandas(object):
     def __init__(self):
         print('### PANDAS QUIZ ###')
+
+        Q1 = pd.DataFrame().from_dict({"1":[1,3,5], "2":[2,4,6]}, orient='index', columns=['a', 'b', 'c'])
+        df1 = pd.DataFrame({"a": [1, 2], "b": [3, 4], "c": [5, 6]}, index=[1, 2])
+        ic(f'Q1{"#"*20}')
+        ic(Q1)
+        ic(df1)
         '''
         Q1. 다음 결과 출력
            a  b  c
@@ -10,8 +24,15 @@ class MyPandas(object):
                  1  1  3  5
                  2  2  4  6
         '''
+        Q2 = pd.DataFrame({"A": range(1, 11, 3), "B": range(2, 12, 3), "C": range(3, 13, 3)}, index=range(1,5))
+        df2 = pd.DataFrame([[1,2,3], [4,5,6], [7,8,9], [10,11,12]], index=range(1,5), columns=["A", "B", "C"])
+        ic(f'Q2{"#" * 20}')
+        ic(Q2)
+        ic(df2)
+        # index 마지막 숫자 포함 안 함
+        # range 세번째 숫자는 더하기 숫자.range(1, 11, 3) = 1, 1+3, 4+3, 7+3, 10(11보다 아래)
 
-        '''         
+        '''
         Q2. 다음 결과 출력
            A   B   C
         1   1   2   3
@@ -24,6 +45,8 @@ class MyPandas(object):
                  3   7   8   9
                  4  10  11  12
         '''
+        df3 = pd.DataFrame(np.random.randint(10, 100, size=(2, 3)))
+        ic(df3)
 
         ''' 
         Q3 두자리 정수를 랜덤으로 2행 3열 데이터프레임을 생성
@@ -31,9 +54,26 @@ class MyPandas(object):
                  0  95  25  74
                  1  44  24  97
         '''
+        ic(f'Q4 {"#" * 20}')
+        # ic(self.score())
+        # ic(self.id())
+
+        '''
+        def id(self):
+        return ["".join([random.choice(string.ascii_letters) for i in range(5)]) for i in range(10)]
+        def score(self):
+        return np.random.randint(0, 100, (10, 4))
+        '''
+        # score = [list() for i in range(1, 11)]
+        score = [list(map(lambda x: np.random.randint(0, 101), [i for i in range(1, 5)])) for i in range(1, 11)]
+        students = ["".join([random.choice(string.ascii_letters) for i in range(5)]) for i in range(10)]
+        ic(students)
+        subjects = ['국어',  '영어',  '수학',  '사회']
+        df4 = pd.DataFrame(score, index=students, columns=subjects)
+        ic(df4)
+
 
         ''' 
-
         Q4 국어, 영어, 수학, 사회 4과목을 시험치른 10명의 학생들의 성적표 작성. 단 점수 0 ~ 100이고 학생은 랜덤 알파벳 5자리 ID 로 표기
         ic| self.id(): 'HKKHc'
         ic| self.score(): 22
@@ -51,6 +91,35 @@ class MyPandas(object):
 
         '''
 
+        subjects = ['국어', '영어', '수학', '사회']
+        data =[[93, 44, 14, 94],
+               [25, 54, 29, 10],
+               [82, 65, 31, 31],
+                [51, 56, 56, 3],
+                [34, 32, 67, 48],
+                [85, 24, 16, 8],
+                [28, 80, 52, 43],
+                [25, 94, 93, 54],
+                [32, 50, 95, 1],
+                [26, 37, 80, 27]]
+
+        df = pd.DataFrame(data,
+                          index=[],
+                          columns=[])
+
+        df.loc['ckSVA'] = [93, 44, 14, 94]
+        df.loc['CAOot'] = [25, 54, 29, 10]
+        df.loc['fZTCh'] = [82, 65, 31, 31]
+        df.loc['mqZJJ'] = [51, 56, 56, 3]
+        df.loc['BKlLt'] = [34, 32, 67, 48]
+        df.loc['KKYUN'] = [85, 24, 16, 8]
+        df.loc['WAjFK'] = [28, 80, 52, 43]
+        df.loc['yBVgG'] = [25, 94, 93, 54]
+        df.loc['lGmwZ'] = [32, 50, 95, 1]
+        df.loc['GQzmY'] = [26, 37, 80, 27]
+
+
+
         ''' 
         Q5 4번 문제를 loc 를 통해 동일하게 작성
         ic| df5:        국어  영어  수학  사회
@@ -65,6 +134,15 @@ class MyPandas(object):
                  lGmwZ  32  50  95   1
                  GQzmY  59  37  80  27
         '''
+
+        # 국어점수만출력
+        print('#' * 150)
+        print(df.loc['ckSVA':'GQzmY', '국어'])
+        print(df.loc['lGmwZ'])
+
+        print('#' * 150)
+
+        return df
 
         ''' 
         Q5-1 국어 점수만 출력
@@ -430,6 +508,13 @@ class MyPandas(object):
 
         '''  
         Q11. 체의 각 행에 대해 세번째 NaN 값이 들어 있는 열을 찾으시오. 일련의 열 레이블을 반환해야 합니다.
+        nan = np.nan
+        data = [[0.04, nan, nan, 0.25, nan, 0.43, 0.71, 0.51, nan, nan],
+                [nan, nan, nan, 0.04, 0.76, nan, nan, 0.67, 0.76, 0.16],
+                [nan, nan, 0.5, nan, 0.31, 0.4, nan, nan, 0.24, 0.01],
+                [0.49, nan, nan, 0.62, 0.73, 0.26, 0.85, nan, nan, nan],
+                [nan, nan, 0.41, nan, 0.05, nan, 0.61, nan, 0.48, 0.68]]
+        columns = list('abcdefghij')
           ic| type(df11.isnull()): <class 'pandas.core.frame.DataFrame'>
           ic| df11: 0    e
                    1    c
@@ -439,8 +524,11 @@ class MyPandas(object):
                   dtype: object
         '''
 
+
         '''  
         Q12. grps 에서 a, b, c 별로 가장 큰 값
+            df12 = pd.DataFrame({'grps': list('aaabbcaabcccbbc'),
+                           'vals': [12, 345, 3, 1, 45, 14, 4, 52, 54, 23, 235, 21, 57, 3, 87]})
           ic| type(df12.groupby('grps')): <class 'pandas.core.groupby.generic.DataFrameGroupBy'>
           ic| type(df12.groupby('grps')['vals']): <class 'pandas.core.groupby.generic.SeriesGroupBy'>
           ic| df12: grps
@@ -450,14 +538,17 @@ class MyPandas(object):
                   Name: vals, dtype: int64
         '''
 
+
         '''  
-        Q13. DF 객체를 list 로 변환
+        Q13. 다음 DF13 객체를 list 로 변환
+        df13 = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
         ic| type(ls): <class 'list'>
         ic| df13.values.tolist(): [[1, 4], [2, 5], [3, 6]]
         '''
 
+
         '''  
-        Q14. DF 객체를 dictionary 로 변환
+        Q14. 아래 결과로 출력되는 DF 객체 전환 코드작성
         ic| df14.to_dict(): {'A': {0: 1, 1: 2, 2: 3}, 'B': {0: 4, 1: 5, 2: 6}}
         '''
 
